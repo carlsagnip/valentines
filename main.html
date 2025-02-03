@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Message</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9d6e4;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      opacity: 0; /* Start with opacity 0 for fade-in */
+      transition: opacity 1s ease-in-out; /* Fade-in effect */
+    }
+
+    .message-container {
+      background-color: #ffb6c1; /* Light pink background */
+      border-radius: 10px;
+      padding: 30px;
+      width: 80%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative; /* Set the container as the relative position */
+    }
+
+    .message-container h1 {
+      font-size: 32px;
+      color: #ff4f81;
+      margin-bottom: 20px;
+    }
+
+    .message-container p {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .yes-button, .no-button {
+      padding: 10px 20px;
+      background-color: #ff4f81; /* Pink button color */
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      text-decoration: none;
+      opacity: 1;
+      transition: opacity 0.5s ease-out; /* For fade-out effect */
+    }
+
+    .yes-button:hover, .no-button:hover {
+      background-color: #ff69b4; /* Darker pink on hover */
+    }
+
+    /* Style for the "No" button with transition */
+    .no-button {
+      transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+    }
+
+    /* Add blur effect when moving */
+    .moving {
+      filter: blur(5px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message-container">
+    <h1>Will you be my Valentine?</h1>
+    <p>This is a special message just for you. What will your answer be?</p>
+
+    <div class="button-container">
+      <a href="#" class="yes-button" id="yesButton">Yes</a> 
+      <a href="#" class="no-button" id="noButton">No</a>
+    </div>
+  </div>
+
+  <script>
+    const noButton = document.getElementById('noButton');
+    const yesButton = document.getElementById('yesButton');
+    const messageContainer = document.querySelector('.message-container');
+
+    // Function to move the "No" button randomly within the container
+    function moveButtonRandomly() {
+      // Add the blur effect
+      noButton.classList.add('moving');
+      
+      // Get the dimensions of the message container
+      const containerRect = messageContainer.getBoundingClientRect();
+      
+      // Generate random positions within the container's width and height
+      const randomX = Math.random() * (containerRect.width - noButton.offsetWidth);
+      const randomY = Math.random() * (containerRect.height - noButton.offsetHeight);
+
+      // Apply random position within the message container
+      noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+      // Remove blur effect after the move animation is done
+      setTimeout(() => {
+        noButton.classList.remove('moving');
+      }, 500); // Remove blur after 0.5s
+    }
+
+    // Add event listener to the "No" button
+    noButton.addEventListener('click', moveButtonRandomly);
+
+    // Fade out effect for the entire page when the "Yes" button is clicked
+    yesButton.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent default link behavior
+
+      // Apply fade-out effect on the entire page (body)
+      document.body.style.opacity = '0';
+
+      // Wait for the fade-out effect to finish before navigating
+      setTimeout(function() {
+        window.location.href = 'yes.html'; // Navigate to the yes page
+      }, 1000); // Wait for 1 second (fade-out duration)
+    });
+
+    // Fade-in effect for the body when the page loads
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1'; // Set opacity to 1 when the page has fully loaded
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Carousel</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9d6e4;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      opacity: 0; /* Set initial opacity to 0 for fade-in effect */
+      transition: opacity 1s ease-in-out; /* Faster fade-in effect */
+    }
+    .carousel-container {
+      position: relative;
+      width: 80%;
+      max-width: 300px; /* Smaller container */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-bottom: 20px; /* Space for the button */
+    }
+    .carousel {
+      display: flex;
+      position: relative;
+      width: 100%;
+      height: 200px; /* Fixed height for carousel */
+    }
+    .carousel-item {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .carousel-item.active {
+      opacity: 1;
+    }
+    .carousel img {
+      width: 200px; /* Smaller image size */
+      height: 200px; /* Smaller image size */
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid pink; /* Pink border */
+    }
+    .carousel-title {
+      position: absolute;
+      bottom: 10px; /* Position title inside the image */
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 16px;
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .main-button {
+      padding: 10px 20px;
+      background-color: pink;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+    .main-button:hover {
+      background-color: #ff69b4;
+    }
+    .carousel-title-wrapper {
+      margin-bottom: 20px;
+    }
+    .carousel-title-wrapper h2 {
+      font-size: 24px;
+      color: #ff4f81; /* Light pink color for the title */
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Memories Title -->
+  <div class="carousel-title-wrapper">
+    <h2>Memories</h2>
+  </div>
+
+  <div class="carousel-container">
+    <div class="carousel">
+      <div class="carousel-item active">
+        <img src="image1.jpg">
+        <div class="carousel-title">2022</div>
+      </div>
+      <div class="carousel-item">
+        <img src="image2.jpg">
+        <div class="carousel-title">2022</div>
+      </div>
+      <div class="carousel-item">
+        <img src="image3.jpg">
+        <div class="carousel-title">2023</div>
+      </div>
+      <div class="carousel-item">
+        <img src="image4.jpg">
+        <div class="carousel-title">2024</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Button -->
+  <a href="main.html" class="main-button" id="mainButton">Click Me</a>
+
+  <script>
+    let currentIndex = 0;
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const body = document.querySelector('body');
+    const mainButton = document.getElementById('mainButton');
+
+    function updateCarousel() {
+      carouselItems.forEach((item, index) => {
+        item.classList.remove('active');
+        if (index === currentIndex) {
+          item.classList.add('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % carouselItems.length;
+      updateCarousel();
+    }
+
+    setInterval(nextSlide, 3000); // Auto-scroll every 3 seconds
+
+    // Add fade-out and fade-in effect when the button is clicked
+    mainButton.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the link from directly navigating
+
+      // Apply fade-out effect
+      body.style.opacity = '0';
+
+      // Wait for the fade-out to finish before navigating
+      setTimeout(function() {
+        window.location.href = 'main.html'; // Navigate after fade-out
+      }, 1000); // Wait for 1 second (matching the fade-out duration)
+    });
+
+    // Fade-in effect when the page loads
+    window.addEventListener('load', function() {
+      body.style.opacity = '1'; // Set opacity to 1 when the page has fully loaded
+    });
+  </script>
+</body>
+</html>

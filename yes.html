@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Message</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9d6e4;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      opacity: 0; /* Start with opacity 0 for fade-in */
+      transition: opacity 1s ease-in-out; /* Fade-in effect */
+    }
+    .message-container {
+      background-color: #ffb6c1; /* Light pink background */
+      border-radius: 10px;
+      padding: 30px;
+      width: 80%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .message-container h1 {
+      font-size: 32px;
+      color: #ff4f81;
+      margin-bottom: 20px;
+    }
+    .message-container p {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    .play-button {
+      padding: 10px 20px;
+      background-color: #ff4f81;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .play-button:hover {
+      background-color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message-container">
+    <h1>yie love niya q!</h1>
+    <p>sana makapag date tayo sa 14. kung hindi man, love, i'm sorry agad :< </p>
+    <p>libre kita anything you want pag nagka-pera na ko! loveee loveeeuuu!</p>
+    <p>sana next year, ma-celebrate na natin ang valentine's together.</p>
+    
+    <!-- Play Me button linked to the YouTube link -->
+    <a href="https://youtu.be/izVXgdiTcQ8?si=pznR8fVGSkcQn8xM" class="play-button" target="_blank">Play Me</a>
+  </div>
+
+  <script>
+    // Fade-in effect for the entire page when it's loaded
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1'; // Set opacity to 1 when the page has fully loaded
+    });
+  </script>
+
+</body>
+</html>

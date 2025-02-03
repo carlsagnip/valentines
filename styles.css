@@ -1,0 +1,100 @@
+/* General Styles */
+body {
+  font-family: 'Georgia', serif;
+  background-color: #f9d6e4; /* Soft coquette pink */
+  color: #8a4b7c; /* Muted purple for text */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ribbon Background */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    #ffb6c1 20px,
+    #ffb6c1 40px
+  );
+  z-index: -1;
+  opacity: 0.3; /* Soften the ribbon effect */
+}
+
+header {
+  background-color: rgba(255, 182, 193, 0.8); /* Light pink with transparency */
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 2rem; /* Smaller font size for mobile */
+  margin: 0;
+}
+
+/* Center the content in the main section */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 140px); /* Full height minus header and footer */
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+p {
+  font-size: 1rem; /* Smaller font size for mobile */
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+button {
+  background-color: #ff69b4; /* Hot pink */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff1493; /* Deeper pink on hover */
+}
+
+footer {
+  background-color: rgba(255, 182, 193, 0.8); /* Light pink with transparency */
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem; /* Larger font size for tablets and desktops */
+  }
+
+  p {
+    font-size: 1.2rem; /* Larger font size for tablets and desktops */
+  }
+
+  main {
+    padding: 40px 20px; /* More padding for larger screens */
+  }
+}
